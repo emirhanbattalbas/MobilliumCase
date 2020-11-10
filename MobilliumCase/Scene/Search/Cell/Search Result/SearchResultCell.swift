@@ -1,6 +1,15 @@
 import UIKit
 
-class SearchResultCell: UITableViewCell {
+class SearchResultCell: UITableViewCell, Reusable {
+  
+  @IBOutlet var nameLabel: UILabel!
+  
+  var movie: MovieResult? {
+    didSet{
+      guard let movie = movie else { return }
+      nameLabel.text = movie.title
+    }
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()

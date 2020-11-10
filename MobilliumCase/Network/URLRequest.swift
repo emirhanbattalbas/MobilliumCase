@@ -1,8 +1,10 @@
-//
-//  URLRequest.swift
-//  MobilliumCase
-//
-//  Created by emirhan battalbaş on 22.10.2020.
-//
-
 import Foundation
+import Alamofire
+
+protocol UrlRequest {
+    var url: URL { get }
+    var method: HTTPMethod { get }
+    var parameters: Parameters? { get }
+    var encoding: ParameterEncoding { get }
+    var headers: HTTPHeaders? { get }
+}

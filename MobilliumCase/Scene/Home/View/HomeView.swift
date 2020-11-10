@@ -5,30 +5,19 @@ class HomeView: UIView {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet var searchBar: UISearchBar!
   
-  func customizeSearchBar() {
+  func customizeSearchBar(delegate: UISearchBarDelegate) {
     searchBar.placeholder = "Search"
-    addToolBar()
+    searchBar.delegate = delegate
   }
   
-  func initializeTableView(delegate: MovieDetailDelegate) {
+  func registerCell() {
     tableView.register(cellType: MovieListCell.self)
+  }
+  
+  func initializeUpComingMovieView(delegate: MovieDetailDelegate) {
     let headerView = UpComingMovieView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
     headerView.delegate = delegate
     tableView.tableHeaderView = headerView
   }
   
-  func addToolBar() {
-    let bar = UIToolbar()
-    let done = UIBarButtonItem(title: "Tamam",
-                               style: .plain,
-                               target: self,
-                               action: #selector(dismiss))
-    bar.items = [done]
-    bar.sizeToFit()
-    searchBar.inputAccessoryView = bar
-  }
-  
-  @objc func dismiss() {
-    endEditing(true)
-  }
 }

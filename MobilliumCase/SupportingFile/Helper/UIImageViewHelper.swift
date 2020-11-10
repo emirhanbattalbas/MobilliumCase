@@ -1,7 +1,10 @@
 import UIKit
 import Kingfisher
 
-extension UIImageView {
+class ImageViewHelper {
+  
+  static let shared = ImageViewHelper()
+  
   func downloadImage(with urlString : String , imageCompletionHandler: @escaping (UIImage?) -> Void) {
     guard let url = URL.init(string: urlString) else {
       return  imageCompletionHandler(nil)

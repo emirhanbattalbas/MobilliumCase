@@ -78,7 +78,7 @@ extension UpComingMovieView: UICollectionViewDelegate, UICollectionViewDataSourc
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width, height: 200)
+    return CGSize(width: UIScreen.main.bounds.width, height: 185)
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

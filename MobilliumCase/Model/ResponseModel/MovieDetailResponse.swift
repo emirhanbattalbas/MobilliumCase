@@ -6,10 +6,9 @@ struct MovieDetail: Codable {
   let backdropPath: String?
   var backdropUrl: String {
     guard let backdropPath = backdropPath else { return "" }
-    return Constant.Network.imageBaseUrl + backdropPath
+    return Global.Network.imageBaseUrl + backdropPath
   }
   let budget: Int?
-  let genres: [Genre]?
   let homepage: String?
   let id: Int?
   let imdbID, originalLanguage, originalTitle, overview: String?
@@ -17,7 +16,6 @@ struct MovieDetail: Codable {
   let posterPath: String?
   let releaseDate: String?
   let revenue, runtime: Int?
-  let spokenLanguages: [SpokenLanguage]?
   let status, tagline, title: String?
   let video: Bool?
   let voteAverage: Double?
@@ -36,7 +34,7 @@ struct MovieDetail: Codable {
   enum CodingKeys: String, CodingKey {
     case adult
     case backdropPath = "backdrop_path"
-    case budget, genres, homepage, id
+    case budget, homepage, id
     case imdbID = "imdb_id"
     case originalLanguage = "original_language"
     case originalTitle = "original_title"
@@ -44,7 +42,6 @@ struct MovieDetail: Codable {
     case posterPath = "poster_path"
     case releaseDate = "release_date"
     case revenue, runtime
-    case spokenLanguages = "spoken_languages"
     case status, tagline, title, video
     case voteAverage = "vote_average"
     case voteCount = "vote_count"
@@ -62,40 +59,3 @@ struct MovieDetail: Codable {
     case type
   }
 }
-
-struct Genre: Codable {
-  let id: Int
-  let name: String
-}
-
-struct ProductionCompany: Codable {
-  let id: Int
-  let logoPath: String?
-  let name, originCountry: String
-  
-  enum CodingKeys: String, CodingKey {
-    case id
-    case logoPath = "logo_path"
-    case name
-    case originCountry = "origin_country"
-  }
-}
-
-struct ProductionCountry: Codable {
-  let iso3166_1, name: String
-  
-  enum CodingKeys: String, CodingKey {
-    case iso3166_1 = "iso_3166_1"
-    case name
-  }
-}
-
-struct SpokenLanguage: Codable {
-  let iso639_1, name: String
-  
-  enum CodingKeys: String, CodingKey {
-    case iso639_1 = "iso_639_1"
-    case name
-  }
-}
-

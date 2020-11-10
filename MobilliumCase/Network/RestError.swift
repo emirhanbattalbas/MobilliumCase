@@ -1,8 +1,6 @@
-//
-//  RestError.swift
-//  MobilliumCase
-//
-//  Created by emirhan battalbaş on 22.10.2020.
-//
-
 import Foundation
+
+enum RestError: Error {
+    case statusCode(statusCode: Int)
+    case logicError(error: Error)
+}

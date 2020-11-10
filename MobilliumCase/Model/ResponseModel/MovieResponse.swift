@@ -1,9 +1,5 @@
 import Foundation
 
-struct Dates: Codable {
-  let maximum, minimum: String
-}
-
 struct Movie: Codable {
   let results: [MovieResult]
   let page, totalResults: Int
@@ -17,29 +13,32 @@ struct Movie: Codable {
 }
 
 struct MovieResult: Codable {
-  let voteCount, id: Int
-  let video: Bool
-  let voteAverage: Double
-  let title: String
-  let popularity: Double
-  let posterPath: String
-  let originalTitle: String
-  let genreIDS: [Int]
-  let backdropPath: String
+  let voteCount: Int?
+  let id: Int
+  let voteAverage: Double?
+  let title: String?
+  let posterPath: String?
+  let originalTitle: String?
+  let backdropPath: String?
   var backdropUrl: String {
-    return Constant.Network.imageBaseUrl + backdropPath
+    guard let backdropPath = backdropPath else { return "" }
+    return Global.Network.imageBaseUrl + backdropPath
   }
-  let adult: Bool
-  let overview, releaseDate: String
+  var posterUrl: String {
+    guard let backdropPath = posterPath else { return "" }
+    return Global.Network.imageBaseUrl + backdropPath
+  }
+  let adult: Bool?
+  let overview: String?
+  let releaseDate: String?
   
   enum CodingKeys: String, CodingKey {
     case voteCount = "vote_count"
-    case id, video
+    case id
     case voteAverage = "vote_average"
-    case title, popularity
+    case title
     case posterPath = "poster_path"
     case originalTitle = "original_title"
-    case genreIDS = "genre_ids"
     case backdropPath = "backdrop_path"
     case adult, overview
     case releaseDate = "release_date"

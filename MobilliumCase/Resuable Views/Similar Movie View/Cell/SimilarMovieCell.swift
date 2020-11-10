@@ -10,7 +10,7 @@ class SimilarMovieCell: UICollectionViewCell, Reusable {
   var movie: MovieResult? {
     didSet {
       guard let movie = movie else { return }
-      ImageViewHelper.shared.downloadImage(with: movie.posterPath ?? "") { (image) in
+      ImageViewHelper.shared.downloadImage(with: movie.posterUrl) { (image) in
         self.posterImageView.image = image
       }
       nameLabel.text = movie.title

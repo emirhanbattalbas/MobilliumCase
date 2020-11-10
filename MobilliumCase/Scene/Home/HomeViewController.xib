@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,20 +20,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bqm-N1-VbZ">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bqm-N1-VbZ">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="kjH-Hc-eo6"/>
+                        <outlet property="delegate" destination="-1" id="vlG-qI-eO6"/>
+                    </connections>
                 </tableView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="48k-gt-99d">
+                    <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="48k-gt-99d" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FdK-mS-tps"/>
+                <constraint firstItem="48k-gt-99d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="avn-7h-cQK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bqm-N1-VbZ" secondAttribute="trailing" id="dOE-wY-uxQ"/>
+                <constraint firstAttribute="trailing" secondItem="48k-gt-99d" secondAttribute="trailing" id="fXc-lb-xQS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Bqm-N1-VbZ" secondAttribute="bottom" id="oRC-8d-fbL"/>
                 <constraint firstItem="Bqm-N1-VbZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="op4-kC-4QM"/>
                 <constraint firstItem="Bqm-N1-VbZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pzM-Cj-EaK"/>
             </constraints>
             <connections>
+                <outlet property="searchBar" destination="48k-gt-99d" id="lTE-wZ-hAC"/>
                 <outlet property="tableView" destination="Bqm-N1-VbZ" id="MEi-yG-60h"/>
             </connections>
             <point key="canvasLocation" x="97" y="89"/>

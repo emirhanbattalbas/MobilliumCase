@@ -1,23 +1,9 @@
 import Foundation
 
-struct Constant {
-  
+struct Global {
   struct Network {
-    static let baseUrl = "https://desolate-shelf-18786.herokuapp.com"
-  }
-  
-  struct Title {
-    static let marketTitle = "Mini Bakkal"
-    static let cardTitle = "Sepet"
-    static let warning = "Uyarı"
-  }
-  
-  struct Message {
-    static let deletingWarningMessage = "Sepetinizdeki ürünleri silmek istediğinize eminmisiniz?"
-  }
-  
-  struct ButtonText {
-    static let close = "Kapat"
-    static let delete = "Sil"
+    static let baseUrl = "https://api.themoviedb.org"
+    static let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
+    static let apiKey = "ae3e2898e99776e7cc919cfb631884fe"
   }
 }

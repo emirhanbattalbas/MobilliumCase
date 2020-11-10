@@ -5,8 +5,12 @@ class SimilarMovieView: UIView {
   @IBOutlet var contentView: UIView!
   @IBOutlet var collectionView: UICollectionView!
 
+  let similarViewHeight: CGFloat = 200
+  
   var viewModel: SimilarMovieViewModel!
 
+  weak var delegate: MovieDetailDelegate?
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     commonInit()
@@ -27,21 +31,13 @@ class SimilarMovieView: UIView {
   
   private func commonInit() {
     contentView = loadViewFromNib()
-    contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200)
+    contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: similarViewHeight)
     configureCollectionView()
     addSubview(contentView)
   }
   
   func configureCollectionView() {
-    guard viewModel != nil else { return }
-    viewModel.completion = { isSucces -> Void in
-      if isSucces {
-        self.collectionView.reloadData()
-      }
-    }
-    collectionView.delegate = self
-    collectionView.dataSource = self
-    collectionView.register(cellType: UpComingMovieCell.self)
+    collectionView.register(cellType: SimilarMovieCell.self)
   }
 }
 
@@ -62,7 +58,16 @@ extension SimilarMovieView: UICollectionViewDelegate, UICollectionViewDataSource
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width, height: 200)
+    return CGSize(width: 100, height: 150)
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    delegate?.didMovieDetail(id: viewModel.getMovieId(indexPath: indexPath))
+  }
+}
+
+extension SimilarMovieView: SimilarMovieViewModelDelegate {
+  func reloadData() {
+    collectionView.reloadData()
+  }
 }
